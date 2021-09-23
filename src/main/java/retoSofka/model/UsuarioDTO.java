@@ -50,6 +50,11 @@ public class UsuarioDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public String toString() {
+		return "UsuarioDTO [id=" + id + ", nombre=" + nombre + ", username=" + username + ", email=" + email + "]";
+	}
 	
 	
 }

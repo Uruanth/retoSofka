@@ -47,6 +47,14 @@ public class HistorialDTO {
 
 	public void setAcumulado(int acumulado) {
 		this.acumulado = acumulado;
+	}
+
+
+	@Override
+	public String toString() {
+		return "HistorialDTO [id_user=" + id_user + ", numeroIntento=" + numeroIntento + ", puntaje=" + puntaje
+				+ ", acumulado=" + acumulado + "]";
 	}	
+	
 	
 }

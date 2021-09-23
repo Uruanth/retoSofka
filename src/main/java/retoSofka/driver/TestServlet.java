@@ -1,27 +1,23 @@
 package retoSofka.driver;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import retoSofka.model.UsuarioDTO;
-
 /**
- * Servlet implementation class ManejoPeticiones
+ * Servlet implementation class TestServlet
  */
-@WebServlet("/ManejoPeticiones")
-public class ManejoPeticiones extends HttpServlet {
+@WebServlet("/TestServlet")
+public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManejoPeticiones() {
+    public TestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +28,6 @@ public class ManejoPeticiones extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 	}
 
 	/**
@@ -41,6 +36,15 @@ public class ManejoPeticiones extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		/*
+		 * Se genero la base de datos de prueba 
+		 * 
+		 * System.out.println("inicio");
+		 * PreguntasRespuestasPruebas prn = new PreguntasRespuestasPruebas();
+		 * prn.iniciarBD();		
+		 * System.out.println("ok");
+		*/
 	}
 
 }

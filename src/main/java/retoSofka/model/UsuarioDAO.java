@@ -21,7 +21,7 @@ public class UsuarioDAO {
 			ps.setString(2, udto.getNombre());
 			ps.setString(3, udto.getUsername());
 			ps.setString(4, udto.getEmail());
-			ps.executeQuery();
+			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			

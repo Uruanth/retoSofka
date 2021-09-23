@@ -9,8 +9,8 @@ import retoSofka.driver.IngresoBaseData;
 
 public class PreguntasDAO {
 	
-	//Leer preguntas por categoria
-	public ArrayList<PreguntasDTO> consultaByCategoria(PreguntasDTO pdto){
+	//Leer preguntas por categoria (numero entero entre 1 a 5)
+	public ArrayList<PreguntasDTO> consultaByCategoria(int pdto){
 		
 		String query="SELECT * FROM bancopreguntas WHERE categoriaPregunta=?";
 		Connection con=null;
@@ -21,10 +21,10 @@ public class PreguntasDAO {
 		try {
 			con = IngresoBaseData.getConexion();
 			ps = con.prepareStatement(query);
-			ps.setInt(1, pdto.getCatPregunt());
+			ps.setInt(1, pdto);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				PreguntasDTO pregDTO = new PreguntasDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+				PreguntasDTO pregDTO = new PreguntasDTO(rs.getString(1), rs.getString(2),  rs.getInt(3));
 				lista.add(pregDTO);
 			}
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ public class PreguntasDAO {
 	
 	public void agregarPregunta(PreguntasDTO pdto) {
 		String query = "INSERT INTO bancopreguntas (id_pregunta,"
-				+ "pregunta, tipo_pregunta, categoriaPregunta) VALUES (?,?,?,?)";
+				+ "pregunta, categoriaPregunta) VALUES (?,?,?)";
 		Connection con=null;
 		PreparedStatement ps=null;
 		try {
@@ -54,8 +54,8 @@ public class PreguntasDAO {
 			ps=con.prepareStatement(query);
 			ps.setString(1, pdto.getId_pregunta());
 			ps.setString(2, pdto.getPregunta());
-			ps.setString(3, pdto.getTipoPregunta());
-			ps.setInt(4, pdto.getCatPregunt());
+			ps.setInt(3, pdto.getCatPregunt());
+			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

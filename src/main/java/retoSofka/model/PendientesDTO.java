@@ -29,6 +29,12 @@ public class PendientesDTO {
 	public void setCategoriaPregunta(int categoriaPregunta) {
 		this.categoriaPregunta = categoriaPregunta;
 	}
+
+	@Override
+	public String toString() {
+		return "PendientesDTO [id_user=" + id_user + ", categoriaPregunta=" + categoriaPregunta + "]";
+	}
+	
 	
 	
 }

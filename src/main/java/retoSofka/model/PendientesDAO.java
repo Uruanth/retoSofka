@@ -22,7 +22,7 @@ public class PendientesDAO {
 			ps = con.prepareStatement(query);
 			ps.setInt(1, pdto.getId_user());
 			ps.setInt(2, pdto.getCategoriaPregunta());
-			ps.executeQuery();
+			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			
