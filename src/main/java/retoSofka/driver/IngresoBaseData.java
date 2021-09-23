@@ -4,13 +4,14 @@ import java.sql.*;
 
 public class IngresoBaseData {
 	
-	private static String rutaBaseDatos = "jdbc:mysql:localhost:";
+	private static String rutaBaseDatos = "jdbc:mysql://localhost:";
 	private static String puerto = "3306";
 	private static String nombreBaseDatos = "sofkareto";
 	private static String usuarioBaseDatos = "root";
 	private static String passwordBaseDatos = "admin";
 	
 	private static String rutaCompleta = rutaBaseDatos+puerto +"/"+nombreBaseDatos; 
+	
 	
 	public static Connection getConexion() throws SQLException {
 		try {

@@ -12,5 +12,9 @@ menu inicial <br>
 usuario <br>
 ingresar<br>
 
+<form action="ManejoPeticiones">
+<input type="submit">
+</form>
+
 </body>
 </html>
