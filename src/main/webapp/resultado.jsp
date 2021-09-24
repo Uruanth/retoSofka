@@ -4,19 +4,58 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="Normalize.css">
+<link rel="stylesheet" href="estiloResultados.css">
 <title>Insert title here</title>
 </head>
 <body>
+  <div class="div_tabla">
+        <div class="titulo_tabla">
+            <h1>Titulo tabla</h1>
+        </div>
 
-Tabla con el historial maximo 20 puntuaciones. <br>
-inpunt prueba servlets <input type="submit" name="pru" form="pru">
-
-<form action="TestServlet" id="pru" method="post"> 
-<input type="text" name="nombre" placeholder="nombre">
-<input type="text" name="id" placeholder="id">
-<input type="text" name="email" placeholder="email">
-<input type="text" name="username" placeholder="username">
-</form>
-
+        <div class="columna_tabla encabezados">
+            <p>INTENTO NUMERO</p>
+        </div>
+        <div class="columna_tabla encabezados">
+          <p>PUNTAJE</p>
+        </div>
+        <div class="columna_tabla encabezados">
+            <p>PREMIO</p>
+        </div>
+        <div class="columna_tabla">
+            Columna 1
+        </div>
+        <div class="columna_tabla">
+            Columna 2
+        </div>
+        <div class="columna_tabla">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum quasi quas voluptas veritatis dolor eaque ipsam impedit libero consequuntur assumenda aliquam exercitationem, repudiandae laborum autem eum deserunt sit quis adipisci.</p>
+        </div>
+        <div class="columna_tabla">
+            Columna 1
+        </div>
+        <div class="columna_tabla">
+            Columna 2
+        </div>
+        <div class="columna_tabla">
+            Columna 3
+        </div>
+        <div class="columna_tabla">
+            Columna 1
+        </div>
+        <div class="columna_tabla">
+            Columna 2
+        </div>
+        <div class="columna_tabla">
+            Columna 3
+        </div>
+        <div class="boton">
+            <input type="submit" value="INICIO">
+        </div>
+        
+    </div>
 </body>
 </html>

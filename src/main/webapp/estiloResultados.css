@@ -1,0 +1,72 @@
+body{
+    background: linear-gradient(#335, #ddd 150%);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO TABLA-------------------------------
+*----------------------------------------------------------------------------
+*/
+.div_tabla{
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr;
+    height: 98vh;
+}
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO TITULO-------------------------------
+*----------------------------------------------------------------------------
+*/
+.titulo_tabla{
+    grid-column: 1/span 3;
+    justify-self: center;
+    align-self: center;
+    max-height: 150px;
+    text-shadow: #aaa 1px 1px 2px;
+  
+}
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO COLUMNAS-------------------------------
+*----------------------------------------------------------------------------
+*/
+.columna_tabla{
+   
+    border-left: #222 solid 2px;
+    border-bottom: #222 solid 2px;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center; 
+    max-height: 150px;
+    font-weight: bolder;
+    text-shadow: #aaa 1px 1px 2px;   
+}
+
+.encabezados{
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO BOTON-------------------------------
+*----------------------------------------------------------------------------
+*/
+.boton{
+    grid-column: 1/span 3;
+    justify-self: center;
+    align-self: center;
+}
+
+.boton>input{
+    font-size: 22PX;
+    margin: 10px;
+
+}
+
+
+.boton>input:hover{
+    background-color: rgba(87, 85, 85, 0.575);
+}

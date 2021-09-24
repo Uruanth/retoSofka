@@ -1,0 +1,113 @@
+body{
+    background: linear-gradient(#fff, #555 23%);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO GENERAL-------------------------------
+*----------------------------------------------------------------------------
+*/
+.div_general{
+    /* background-color: #f9f; */
+    /* border: 2px solid salmon; */
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 97vh;
+    justify-content: center;
+    align-content: center;
+}
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO TITULO-------------------------------
+*----------------------------------------------------------------------------
+*/
+.div_titulo{
+    /* background-color: aliceblue; */
+    /* border: 2px solid #f9f; */
+    max-height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    max-height: 150px;
+    font-size: 25px;
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO CONTENIDO-------------------------------
+*----------------------------------------------------------------------------
+*/
+.div_contenido{
+    /* background-color: beige; */
+    /* border: 2px solid #000; */
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+}
+
+.pregunta{
+    line-height: 0.5;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    font-size: 30px;
+    text-shadow: #aaa 1px 1px 2px;
+    font-weight: bolder;
+    font-family: 'Open Sans', sans-serif;
+    user-select: none;
+}
+
+.respuestas{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* border: 3px solid #000; */
+    font-size: 20px;
+    color: #fff;
+}
+
+.respuestas > p{
+    /* background-color: #f9f; */
+    border: 1px solid rgb(97, 165, 228);
+    margin: 7px;
+    padding: 5px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    text-shadow: #222 1px 1px 2px;
+    user-select: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.respuestas > p:hover{
+    background-color: rgba(97, 165, 228, 0.685);;
+    
+}
+
+.respuestas > p:focus{
+    background-color: rgba(97, 165, 228, 0.685);;
+    
+}
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO BOTON-------------------------------
+*----------------------------------------------------------------------------
+*/
+.div_botones{
+    /* background-color: aqua; */
+    /* border: 2px solid black; */
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.div_botones > form > input{
+    margin: 7px;
+    min-width: 100px;
+    min-height: 35px;
+    font-size: 22px;
+    border: none;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.div_botones > form > input:hover{
+   background-color: rgba(37, 180, 199, 0.548);
+}

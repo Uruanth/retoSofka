@@ -1,0 +1,101 @@
+body{
+    background: linear-gradient(to right, #555 68%, #fff);
+}
+
+.div_general{
+    
+    /* border: 2px solid green; */
+    display: grid;
+    grid-template-columns:1fr;   
+    margin: 5px;
+    height: 98vh;
+
+}
+.div_encabezado{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    max-height: 100%;
+    /* background-color: brown; */
+    /* border: 2px solid saddlebrown; */
+}
+
+.div_encabezado > h1{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO FORMULARIO-------------------------------
+*----------------------------------------------------------------------------
+*/
+
+.div_contenido{
+    height: 100%;
+}
+.div_contenido > form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* border: 3px solid salmon; */
+    
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+    justify-content: center;
+    justify-items: center;
+}
+
+.div_contenido > form > .enviar {
+    justify-content: center;
+    grid-column: 1/span 2;
+    min-width: 200px;
+    max-width: 400px;
+    margin: 5px;
+}
+
+.div_contenido > form > label {
+    margin: 5px;
+    padding: 1px;
+    justify-self: right;
+    color: #eee;
+    font-size: 22px;
+    text-shadow: #037 2px 1px 3px;
+    font-family: 'Bebas Neue', cursive;
+
+    
+}
+
+.div_contenido > form > .datos {
+    margin: 5px;
+    padding: 1px;
+    justify-self: left;
+}
+
+/*----------------------------------------------------------------------------
+*-------------------------------ESTILO PIE DE PAGINA---------------------------
+*----------------------------------------------------------------------------
+*/
+.div_footer{
+    display: grid;
+    grid-template-columns: 1fr;
+    /* background-color: aqua; */
+    /* border:3px solid salmon; */
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.div_footer > p{
+    color: #eee;
+    font-size: 17px;
+    margin: 0px;
+    text-shadow: #000 2px 2px 3px;
+    padding: 3px;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.div_contenido > form > .enviar:hover {
+    background-color: rgba(158, 156, 156, 0.475);
+}
