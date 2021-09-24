@@ -80,3 +80,20 @@ foreign key (id_pregunta) references bancopreguntas (id_pregunta)
 );
 ~~~
 
+
+
+
+
+## Correcciones 
+
+~~~java
+String r1=juego.getRespuesta1().getRespuesta();
+String r2=juego.getRespuesta2().getRespuesta();
+String r3=juego.getRespuesta3().getRespuesta();
+String r4=juego.getRespuesta4().getRespuesta();
+~~~
+
+String r1="r1"
+String r2="r2"
+String r3="r3"
+String r4="r4"

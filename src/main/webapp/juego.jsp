@@ -1,5 +1,18 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page import="javax.servlet.RequestDispatcher" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
+<%@ page import="javax.servlet.http.HttpServletResponse" %>
+<%@ page import="javax.servlet.ServletException" %>
+<%@ page import="javax.servlet.http.HttpServlet" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="retoSofka.driver.RondasPreguntas" %>
+<%@ page import="retoSofka.driver.SeleccionRandom" %>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,24 +26,43 @@
 <body>
 
 
+<%
+
+
+String nombre="sfddf";
+RondasPreguntas juego=new RondasPreguntas();
+ArrayList<RondasPreguntas> rpj = (ArrayList<RondasPreguntas>) request.getAttribute("Preguntas");
+juego=SeleccionRandom.prjuego(rpj);
+
+System.out.println(juego);
+
+String r1=juego.getRespuesta1().getRespuesta();
+String r2=juego.getRespuesta2().getRespuesta();
+String r3=juego.getRespuesta3().getRespuesta();
+String r4=juego.getRespuesta4().getRespuesta();
+
+
+%>
+
+
     <div class="div_general">
         <div class="div_titulo">
-            <h1>Nombre Jugador</h1>
+            <h1>Nombre Jugador </h1>
         </div>
     
         <div class="div_contenido">
             <div class="pregunta">
-                <p>PREGUNTA</p>
+                <p><%=juego.getPreguntas().getPregunta()%></p>
             </div>
             <div class="respuestas">
                 <p 
-                class="p1" name="noSelect">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sunt ad laborum veniam distinctio at iste vel, illum non incidunt nobis aperiam eum voluptate nostrum sed mollitia animi minus sit.</p> 
+                class="p1" name="s"><%= r1%></p> 
                 <p 
-                class="p2" name="noSelect">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sunt ad laborum veniam distinctio at iste vel, illum non incidunt nobis aperiam eum voluptate nostrum sed mollitia animi minus sit.</p> 
+                class="p2" name="d"><%=r2%></p> 
                 <p 
-                class="p3" name="noSelect">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sunt ad laborum veniam distinctio at iste vel, illum non incidunt nobis aperiam eum voluptate nostrum sed mollitia animi minus sit.</p> 
+                class="p3" name="f"><%=r3%></p> 
                 <p 
-                class="p4" name="noSelect">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sunt ad laborum veniam distinctio at iste vel, illum non incidunt nobis aperiam eum voluptate nostrum sed mollitia animi minus sit.</p> 
+                class="p4" name="a"><%=r4%></p> 
     
             </div>
         </div>
@@ -41,6 +73,7 @@
             </form>
         </div>
     </div>
-    
+	<script src="juego.js"></script>
 </body>
 </html>
+

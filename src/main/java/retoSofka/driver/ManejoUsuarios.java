@@ -1,18 +1,17 @@
 package retoSofka.driver;
 
 import java.io.IOException;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import retoSofka.model.PendientesDAO;
-import retoSofka.model.PendientesDTO;
-import retoSofka.model.PreguntasDTO;
+
 import retoSofka.model.UsuarioDAO;
 import retoSofka.model.UsuarioDTO;
 
@@ -35,11 +34,13 @@ public class ManejoUsuarios extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
+		System.out.println("ingreso usuario");
 		UsuarioDTO usDTO = new UsuarioDTO();
 		UsuarioDAO usDAO = new UsuarioDAO();
 		
 		try {
 			usDTO.setId(Integer.parseInt(request.getParameter("id")));
+			System.out.println("documento "+ request.getParameter("id"));
 			System.out.println(usDTO);
 			
 			//Verificar existencia de usuario, solo requiere id
@@ -47,7 +48,13 @@ public class ManejoUsuarios extends HttpServlet {
 			else {
 				
 			//Crear usuario
-				if(request.getParameter("email")==null
+				usDTO.setEmail(request.getParameter("email"));
+				usDTO.setNombre(request.getParameter("nombre"));
+				usDTO.setUsername(request.getParameter("username"));
+				usDAO.cear(usDTO);
+				
+				
+				/*if(request.getParameter("email")==null
 						|| request.getParameter("nombre")==null
 						|| request.getParameter("username")==null) {
 					System.out.println("ingrese todos los datos");
@@ -55,7 +62,7 @@ public class ManejoUsuarios extends HttpServlet {
 					usDTO.setEmail(request.getParameter("email"));
 					usDTO.setNombre(request.getParameter("nombre"));
 					usDTO.setUsername(request.getParameter("username"));	
-				}
+				}*/
 				
 			}
 			
@@ -64,6 +71,11 @@ public class ManejoUsuarios extends HttpServlet {
 			ArrayList<RondasPreguntas> bancoPreguntas = mPreguntas.preguntasRonda(usDTO);
 			
 			//Definir atributos para reenviar y e iniciar el juego
+			request.setAttribute("Preguntas", bancoPreguntas);
+
+			RequestDispatcher rd;
+			rd=request.getRequestDispatcher("juego.jsp");
+			rd.forward(request, response);
 			
 		} catch (Exception e) {
 			//Usuario no existe Solicitar datos de inscripcion 
@@ -71,6 +83,7 @@ public class ManejoUsuarios extends HttpServlet {
 			System.out.println("hubo un error");
 		
 		}
+		System.out.println("fin dopost");
 		
 	}
 	

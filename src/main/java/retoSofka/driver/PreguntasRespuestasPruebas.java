@@ -31,7 +31,7 @@ public class PreguntasRespuestasPruebas {
 				
 				String ff="I";
 				if(n==3) ff="C";
-				String r="respuesta ___i_"+i+"_+_"+n;
+				String r="respuesta ___"+ff+"_"+i+"_+_"+n;
 				RespuestasDTO res=new RespuestasDTO(id_p, r, ff);
 				rs.add(res);
 			}

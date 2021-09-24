@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,17 +13,19 @@
 </head>
 <body>
 
+
+
     <div class="div_general">
         <div class="div_encabezado">
-            <h1>BIENVENIDO</h1>
+            <h1>BIENVENIDO </h1>
         </div>
 
         <div class="div_contenido">
-            <form action="">
-                <label for="">Nombre</label><input type="text" class="datos">
-                <label for="">Identificación</label> <input type="number" class="datos" required>
-                <label for="">Usuario</label><input type="text" class="datos">
-                <label for="">Email</label><input type="email" class="datos">
+            <form action="ManejoPeticiones" method="post">
+                <label for="">Nombre</label><input type="text" class="datos" name="nombre">
+                <label for="">Identificación</label> <input type="number" class="datos" name="id" required>
+                <label for="">Usuario</label><input type="text" class="datos" name="username">
+                <label for="">Email</label><input type="email" class="datos" name="email">
                 <input type="submit" name="Envial" value="Ingresar" class="enviar">    
             </form>
         </div>

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
 
 /**
  * Servlet implementation class TestServlet
@@ -38,13 +39,16 @@ public class TestServlet extends HttpServlet {
 		doGet(request, response);
 		
 		/*
-		 * Se genero la base de datos de prueba 
-		 * 
-		 * System.out.println("inicio");
-		 * PreguntasRespuestasPruebas prn = new PreguntasRespuestasPruebas();
-		 * prn.iniciarBD();		
-		 * System.out.println("ok");
-		*/
+		 Se genero la base de datos de prueba 
+		 System.out.println("inicio");
+		 PreguntasRespuestasPruebas prn = new PreguntasRespuestasPruebas();
+		 prn.iniciarBD();		
+		 System.out.println("ok");
+		
+		  */
+		 
+		
+		System.out.println("servlet pru");
 	}
 
 }

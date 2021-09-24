@@ -1,5 +1,9 @@
 package retoSofka.driver;
 
+
+
+import java.util.ArrayList;
+
 import retoSofka.model.PreguntasDTO;
 import retoSofka.model.RespuestasDTO;
 
@@ -7,6 +11,9 @@ public class RondasPreguntas {
 	
 	private PreguntasDTO preguntas;
 	private RespuestasDTO respuesta1, respuesta2, respuesta3, respuesta4;
+	public RondasPreguntas() {
+		
+	}
 	
 	public RondasPreguntas(PreguntasDTO preguntas, RespuestasDTO respuesta1, 
 			RespuestasDTO respuesta2,
@@ -48,8 +55,12 @@ public class RondasPreguntas {
 	public void setRespuesta4(RespuestasDTO respuesta4) {
 		this.respuesta4 = respuesta4;
 	}
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "RondasPreguntas [preguntas=" + preguntas + ", respuesta1=" + respuesta1 + ", respuesta2=" + respuesta2
+				+ ", respuesta3=" + respuesta3 + ", respuesta4=" + respuesta4 + "]";
+	}
+	
+	
 }

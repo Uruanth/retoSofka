@@ -2,8 +2,7 @@ package retoSofka.driver;
 
 import java.util.ArrayList;
 
-import retoSofka.model.PendientesDAO;
-import retoSofka.model.PendientesDTO;
+
 import retoSofka.model.PreguntasDAO;
 import retoSofka.model.PreguntasDTO;
 import retoSofka.model.UsuarioDTO;

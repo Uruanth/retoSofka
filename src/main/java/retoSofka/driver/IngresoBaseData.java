@@ -16,7 +16,6 @@ public class IngresoBaseData {
 	public static Connection getConexion() throws SQLException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("conexion ok");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

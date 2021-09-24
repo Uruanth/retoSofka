@@ -43,7 +43,7 @@ public class RespuestasDAO {
 	//Buscar por id de la pregunta
 	public ArrayList<RespuestasDTO> respuestasById(String id){
 		
-		String query="SLECT * FROM bancorespuestas WHERE id_pregunta=?";
+		String query="SELECT * FROM bancorespuestas WHERE id_pregunta=?";
 		ArrayList<RespuestasDTO> listaResp=new ArrayList<>();
 		try {
 			con=IngresoBaseData.getConexion();

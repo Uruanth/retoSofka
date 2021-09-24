@@ -29,20 +29,28 @@ public class GeneradorPreguntasRespuestas {
 		
 		preDTO.setCatPregunt(categoria);
 		for(int i=categoria; i<=5; i++) {
-			
 			ArrayList<PreguntasDTO> preguntas=preDAO.consultaByCategoria(i);
 			
 			for(PreguntasDTO p: preguntas) {
-				
 				ArrayList<RespuestasDTO> res=resDAO.respuestasById(p.getId_pregunta());
-				RondasPreguntas rp = new RondasPreguntas(p, res.get(1), res.get(2),
-						 res.get(3), res.get(4));
+				try {
+					RondasPreguntas rp = new RondasPreguntas(p, res.get(0), res.get(1),
+							 res.get(2), res.get(3));
+					lista.add(rp);
+				}catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+					
+					System.out.println("error crear rp");
+				}
 				
-				lista.add(rp);
+				
+				
+				
 			}
-			System.out.println(categoria);
+			
 		}
-		
+		System.out.println(lista);
 		return lista;
 	}
 	
