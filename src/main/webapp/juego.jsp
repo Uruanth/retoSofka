@@ -1,4 +1,5 @@
 
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -10,6 +11,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="retoSofka.driver.RondasPreguntas" %>
 <%@ page import="retoSofka.driver.SeleccionRandom" %>
+<%@ page import="retoSofka.model.PendientesDAO" %>
+<%@ page import="retoSofka.model.PendientesDTO" %>
 
 
 
@@ -27,21 +30,25 @@
 
 
 <%
+int id = (int) request.getAttribute("idus");
+PendientesDTO pen=new PendientesDTO();
+pen.setId_user(id);
+PendientesDAO pend=new PendientesDAO();
+pen=pend.consultar(pen);
+pen.setCategoriaPregunta(pen.getCategoriaPregunta()+1);
+pend.actualizar(pen);
 
 
-String nombre="sfddf";
+if(pen.getCategoriaPregunta()==0 || pen.getCategoriaPregunta()>5) response.sendRedirect("./resultado.jsp");
+
 RondasPreguntas juego=new RondasPreguntas();
 ArrayList<RondasPreguntas> rpj = (ArrayList<RondasPreguntas>) request.getAttribute("Preguntas");
 juego=SeleccionRandom.prjuego(rpj);
-
 System.out.println(juego);
-
 String r1=juego.getRespuesta1().getRespuesta();
 String r2=juego.getRespuesta2().getRespuesta();
 String r3=juego.getRespuesta3().getRespuesta();
 String r4=juego.getRespuesta4().getRespuesta();
-
-
 %>
 
 
@@ -56,24 +63,33 @@ String r4=juego.getRespuesta4().getRespuesta();
             </div>
             <div class="respuestas">
                 <p 
-                class="p1" name="s"><%= r1%></p> 
+                class="p1" name="s"><input type="radio"
+                 value=<%=juego.getRespuesta1().getTipo_respuesta()%> name="c" 
+                 form="chec"><%= r1%></p> 
                 <p 
-                class="p2" name="d"><%=r2%></p> 
+                class="p2" name="d"><input type="radio" 
+                value=<%=juego.getRespuesta2().getTipo_respuesta()%>                 
+                name="c" form="chec"><%=r2%></p> 
                 <p 
-                class="p3" name="f"><%=r3%></p> 
+                class="p3" name="f"><input type="radio" 
+                value=<%=juego.getRespuesta3().getTipo_respuesta()%>
+                name="c" form="chec"><%=r3%></p> 
                 <p 
-                class="p4" name="a"><%=r4%></p> 
+                class="p4" name="a"><input type="radio" 
+                value=<%=juego.getRespuesta4().getTipo_respuesta()%> 
+                name="c" form="chec"><%=r4%></p> 
     
             </div>
         </div>
     
         <div class="div_botones">
-            <form action="">
-                <input type="submit" value="FINALIZAR">
+            <form action="ManejoFinJuego" id="chec">
+                <input type="submit" value="FINALIZAR" name="fin">
+                <input type="submit" value="CONTINUAR" name="continuar">
+                <input type="hidden" value="<%=id%>" name="id">
             </form>
         </div>
     </div>
 	<script src="juego.js"></script>
 </body>
 </html>
-

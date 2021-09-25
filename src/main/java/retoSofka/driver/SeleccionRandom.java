@@ -45,9 +45,7 @@ public class SeleccionRandom {
 	   RondasPreguntas tp=new RondasPreguntas();
 	   tp=rp.get(ente[2]);
 	   
-	   System.out.println();
-	   System.out.println("tp "+tp);
-	   System.out.println();
+	  
 	   int[] en=fisher_yates(4);
 	   RondasPreguntas fp=new RondasPreguntas();
 	   fp.setPreguntas(tp.getPreguntas());
@@ -58,24 +56,18 @@ public class SeleccionRandom {
 	   teres.add(tp.getRespuesta3());
 	   teres.add(tp.getRespuesta4());
 	   
-	   System.out.println();
-	   System.out.println("teres "+teres);
-	   System.out.println();
+	
 	   
 	   for(int n: en) {
 		   teres2.add(teres.get(n));
-		   System.out.println(n);
 	   }
 	   
-	   System.out.println();
-	   System.out.println("teres2 "+teres2);
-	   System.out.println();
+	   
 	   
 	   fp.setRespuesta1(teres2.get(0));
 	   fp.setRespuesta2(teres2.get(1));
 	   fp.setRespuesta3(teres2.get(2));
 	   fp.setRespuesta4(teres2.get(3));
-	   System.out.println(fp);
 	   return fp;
    }
     

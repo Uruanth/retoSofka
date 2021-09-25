@@ -48,9 +48,10 @@ public class UsuarioDAO {
 			rs=ps.executeQuery();
 			rs.next();
 			try {
-				udto.setNombre(rs.getString(2));
-				udto.setUsername(rs.getString(3));
-				udto.setEmail(rs.getString(4));
+				
+				udto.setNombre(rs.getString("nombre"));
+				udto.setUsername(rs.getString("username"));
+				udto.setEmail(rs.getString("email"));
 			} catch (Exception e) {
 				udto = null;
 			}

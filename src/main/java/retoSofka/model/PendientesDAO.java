@@ -51,7 +51,7 @@ public class PendientesDAO {
 			rs=ps.executeQuery();
 			try {
 				rs.next();
-				pdto.setCategoriaPregunta(rs.getInt(2));
+				pdto.setCategoriaPregunta(rs.getInt("id_categoria"));
 			} catch (Exception e) {
 				pdto = null;
 			}
@@ -90,4 +90,28 @@ public class PendientesDAO {
 		
 		
 	}
+
+	
+//actualizar	
+	public void actualizar(PendientesDTO p) {
+		String query="UPDATE pendientes SET id_categoria=? WHERE id_user=?";
+		Connection con=null;
+		PreparedStatement ps=null;
+		try {
+			con=IngresoBaseData.getConexion();
+			ps=con.prepareStatement(query);
+			ps.setInt(1, p.getCategoriaPregunta());
+			ps.setInt(2, p.getId_user());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			try {
+				IngresoBaseData.close(ps);
+				IngresoBaseData.close(con);
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
+
 }

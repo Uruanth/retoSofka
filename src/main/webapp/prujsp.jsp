@@ -19,7 +19,9 @@
 
 adssad
 
-    <script src="juego.js"></script>
+    <form action="TestServlet" method="get">
+    <input type="submit">
+    </form>
 </body>
 </html>
 <%

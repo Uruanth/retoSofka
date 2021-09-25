@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import retoSofka.model.PendientesDAO;
+import retoSofka.model.PendientesDTO;
 import retoSofka.model.UsuarioDAO;
 import retoSofka.model.UsuarioDTO;
 
@@ -40,8 +41,6 @@ public class ManejoUsuarios extends HttpServlet {
 		
 		try {
 			usDTO.setId(Integer.parseInt(request.getParameter("id")));
-			System.out.println("documento "+ request.getParameter("id"));
-			System.out.println(usDTO);
 			
 			//Verificar existencia de usuario, solo requiere id
 			if(existeUsuario(usDTO, usDAO)) usDTO=usDAO.leerById(usDTO);
@@ -65,14 +64,18 @@ public class ManejoUsuarios extends HttpServlet {
 				}*/
 				
 			}
-			
 			//Asignar banco de preguntas
 			ManejoPreguntas mPreguntas=new ManejoPreguntas();
 			ArrayList<RondasPreguntas> bancoPreguntas = mPreguntas.preguntasRonda(usDTO);
+			System.out.println(bancoPreguntas.size());
+			
+			while(bancoPreguntas.size()>5) bancoPreguntas.remove(5);
+			System.out.println(bancoPreguntas.size());
 			
 			//Definir atributos para reenviar y e iniciar el juego
 			request.setAttribute("Preguntas", bancoPreguntas);
-
+			
+			request.setAttribute("idus", usDTO.getId());
 			RequestDispatcher rd;
 			rd=request.getRequestDispatcher("juego.jsp");
 			rd.forward(request, response);
@@ -81,15 +84,19 @@ public class ManejoUsuarios extends HttpServlet {
 			//Usuario no existe Solicitar datos de inscripcion 
 			usDTO=null;
 			System.out.println("hubo un error");
+			e.printStackTrace();
 		
 		}
 		System.out.println("fin dopost");
+		
+		
+		
 		
 	}
 	
 	private boolean existeUsuario(UsuarioDTO us, UsuarioDAO usDAO) {
 		if(usDAO.leerById(us) == null) 	return false;
-		return true;
+		else return true;
 	}
 	
 

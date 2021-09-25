@@ -75,4 +75,32 @@ public class HistorialDAO {
 	}
 	
 
+	//Actualizar
+	public void actualizar(HistorialDTO hdto) {
+		String query="UPDATE historial SET numeroIntento=?, puntaje=?, premioAcumulado=?"
+				+ "WHERE id_user=?";
+		Connection con=null;
+		PreparedStatement ps=null;
+		try {
+			con=IngresoBaseData.getConexion();
+			ps=con.prepareStatement(query);
+			ps.setInt(1, hdto.getNumeroIntento());
+			ps.setInt(2, hdto.getPuntaje());
+			ps.setInt(3, hdto.getAcumulado());
+			ps.setInt(4, hdto.getId_user());
+			ps.executeQuery();
+		} catch (Exception e) {
+			// TODO: handle exception
+			try {
+				IngresoBaseData.close(ps);
+				IngresoBaseData.close(con);
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		
+		
+		
+	}
+	
 }

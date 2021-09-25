@@ -26,7 +26,7 @@ public class GeneradorPreguntasRespuestas {
 		
 		RespuestasDAO resDAO=new RespuestasDAO();
 		RespuestasDTO resDTO = new RespuestasDTO();
-		
+		System.out.println("categoria  "+categoria);
 		preDTO.setCatPregunt(categoria);
 		for(int i=categoria; i<=5; i++) {
 			ArrayList<PreguntasDTO> preguntas=preDAO.consultaByCategoria(i);
@@ -50,7 +50,6 @@ public class GeneradorPreguntasRespuestas {
 			}
 			
 		}
-		System.out.println(lista);
 		return lista;
 	}
 	
@@ -58,8 +57,16 @@ public class GeneradorPreguntasRespuestas {
 		PendientesDAO penDAO = new PendientesDAO(); 
 		PendientesDTO penDTO = new PendientesDTO();
 		penDTO.setId_user(us);
+		penDTO.setCategoriaPregunta(0);
 		penDTO = penDAO.consultar(penDTO);
-		return penDTO;
+		if(penDTO!=null) {
+			penDTO = penDAO.consultar(penDTO);
+			return penDTO;
+		} else {
+			PendientesDTO penDTO2=new PendientesDTO(us, 0);
+			penDAO.crear(penDTO2);
+			return penDTO2;
+		}
 		
 	}
 	
