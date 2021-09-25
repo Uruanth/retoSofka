@@ -30,24 +30,20 @@ public class ManejoFinJuego extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("get");
+		
 		
 		if(request.getParameter("fin")!=null) {
-			System.out.println("finalizar");	
-			response.sendRedirect("./resultado.jsp");
-			/*RequestDispatcher rd;
+			
+			int id=Integer.parseInt(request.getParameter("id"));
+			request.setAttribute("idus", id);
+			RequestDispatcher rd;
 			rd=request.getRequestDispatcher("resultado.jsp");
-			rd.forward(request, response);*/
+			rd.forward(request, response);
 			
 		}
 		
 		if(request.getParameter("continuar")!=null) {
-			System.out.println("contestar");
-			System.out.println(request.getParameter("c"));
-			PreguntasDTO pt;
-			PreguntasDAO pd;
-			System.out.println(request.getParameter("id"));
+			System.out.println("contunuar\n");
 			int id=Integer.parseInt(request.getParameter("id"));
 			if(request.getParameter("c").equals("C")) {
 				
@@ -58,8 +54,8 @@ public class ManejoFinJuego extends HttpServlet {
 				ArrayList<RondasPreguntas> bancoPreguntas = mPreguntas.preguntasRonda(usDTO);
 				while(bancoPreguntas.size()>5) bancoPreguntas.remove(5);
 				for(RondasPreguntas r: bancoPreguntas) {
-					System.out.println("");
-					System.out.println(r.getPreguntas().getId_pregunta());
+					//System.out.println("");
+					//System.out.println(r.getPreguntas().getId_pregunta());
 				}
 				
 				request.setAttribute("Preguntas", bancoPreguntas);
@@ -70,7 +66,15 @@ public class ManejoFinJuego extends HttpServlet {
 				rd.forward(request, response);
 				
 			}else {
-				response.sendRedirect("./resultado.jsp");
+				System.out.println("incorreco"+id);
+				request.setAttribute("idus", id);
+				System.out.println("obtener atributo");
+				int ida = (Integer) request.getAttribute("idus");
+				System.out.println(ida);
+				
+				RequestDispatcher rd;
+				rd=request.getRequestDispatcher("juego.jsp");
+				rd.forward(request, response);
 			}
 			
 			

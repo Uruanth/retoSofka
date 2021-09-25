@@ -45,18 +45,18 @@ public class HistorialDAO {
 		Connection con = null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		
 		try {
 			con=IngresoBaseData.getConexion();
 			ps=con.prepareStatement(query);
 			ps.setInt(1, hdto.getId_user());
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				HistorialDTO hisDTO = new HistorialDTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+				HistorialDTO hisDTO = new HistorialDTO(rs.getInt("id_user"), 
+						rs.getInt("numeroIntento"), rs.getInt("puntaje"), rs.getInt("premioAcumulado"));
 				lista.add(hisDTO);
 			}
 			
-			
+			System.out.println("lista: \n"+lista.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 			

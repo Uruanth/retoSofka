@@ -1,3 +1,4 @@
+<%@page import="retoSofka.driver.ManejoPuntaje"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="javax.servlet.RequestDispatcher" %>
@@ -6,8 +7,11 @@
 <%@ page import="javax.servlet.ServletException" %>
 <%@ page import="javax.servlet.http.HttpServlet" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="retoSofka.driver.RondasPreguntas" %>
-<%@ page import="retoSofka.driver.SeleccionRandom" %>
+<%@ page import="retoSofka.driver.ManejoPuntaje" %>
+<%@ page import="retoSofka.model.HistorialDTO" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,14 +22,17 @@
 <link rel="stylesheet" href="estiloResultados.css">
 <title>Insert title here</title>
 </head>
+<body>
 <%
-System.out.println("\nresultado\n");
+
+int id = (int) request.getAttribute("idus");
+System.out.println(id);
+ManejoPuntaje mp=new ManejoPuntaje();
+mp.setId(id);
+ArrayList<HistorialDTO> lista=mp.historialPuntaje();
 
 %>
-
-
-<body>
-  <div class="div_tabla">
+<div class="div_tabla">
         <div class="titulo_tabla">
             <h1>Titulo tabla</h1>
         </div>
@@ -39,37 +46,33 @@ System.out.println("\nresultado\n");
         <div class="columna_tabla encabezados">
             <p>PREMIO</p>
         </div>
+        
+     <%for(int i=lista.size()-1; i>lista.size()-10; i--){
+	%>        
+
         <div class="columna_tabla">
-            Columna 1
+           <%=lista.get(i).getNumeroIntento() %>
         </div>
         <div class="columna_tabla">
-            Columna 2
+           <%=lista.get(i).getPuntaje() %>
         </div>
         <div class="columna_tabla">
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum quasi quas voluptas veritatis dolor eaque ipsam impedit libero consequuntur assumenda aliquam exercitationem, repudiandae laborum autem eum deserunt sit quis adipisci.</p>
+            <%=lista.get(i).getPuntaje() %>
         </div>
-        <div class="columna_tabla">
-            Columna 1
-        </div>
-        <div class="columna_tabla">
-            Columna 2
-        </div>
-        <div class="columna_tabla">
-            Columna 3
-        </div>
-        <div class="columna_tabla">
-            Columna 1
-        </div>
-        <div class="columna_tabla">
-            Columna 2
-        </div>
-        <div class="columna_tabla">
-            Columna 3
-        </div>
+<%} %>     
+        
+        
         <div class="boton">
             <input type="submit" value="INICIO">
         </div>
         
     </div>
+    
+       
+
+
+    <form action="TestServlet" method="get">
+    <input type="submit">
+    </form>
 </body>
 </html>

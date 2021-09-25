@@ -26,7 +26,6 @@ public class GeneradorPreguntasRespuestas {
 		
 		RespuestasDAO resDAO=new RespuestasDAO();
 		RespuestasDTO resDTO = new RespuestasDTO();
-		System.out.println("categoria  "+categoria);
 		if(categoria>5)categoria=0;
 		preDTO.setCatPregunt(categoria);
 		for(int i=categoria; i<=5; i++) {

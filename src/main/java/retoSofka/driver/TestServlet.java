@@ -36,24 +36,11 @@ public class TestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		UsuarioDTO usDTO=new UsuarioDTO(154, null, null, null);
-		UsuarioDAO da=new UsuarioDAO();
 		
 		
-		ManejoPreguntas mPreguntas=new ManejoPreguntas();
-		ArrayList<RondasPreguntas> bancoPreguntas = mPreguntas.preguntasRonda(usDTO);
-		System.out.println(bancoPreguntas.size());
-		while(bancoPreguntas.size()>5) bancoPreguntas.remove(5);
-		System.out.println(bancoPreguntas.size());
-		for(RondasPreguntas r: bancoPreguntas) {
-			System.out.println("");
-			System.out.println(r.getPreguntas().getId_pregunta());
-			
-			
-			PrintWriter out= response.getWriter();
-			out.append(r.getPreguntas().getId_pregunta());
-			out.append("       ");
-		}
+		
+		
+		
 		
 	}
 
