@@ -1,6 +1,7 @@
 package retoSofka.driver;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -46,8 +47,12 @@ public class TestServlet extends HttpServlet {
 		System.out.println(bancoPreguntas.size());
 		for(RondasPreguntas r: bancoPreguntas) {
 			System.out.println("");
-			System.out.println(r);
-			System.out.println("");
+			System.out.println(r.getPreguntas().getId_pregunta());
+			
+			
+			PrintWriter out= response.getWriter();
+			out.append(r.getPreguntas().getId_pregunta());
+			out.append("       ");
 		}
 		
 	}

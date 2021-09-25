@@ -1,7 +1,7 @@
 package retoSofka.driver;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -67,10 +67,13 @@ public class ManejoUsuarios extends HttpServlet {
 			//Asignar banco de preguntas
 			ManejoPreguntas mPreguntas=new ManejoPreguntas();
 			ArrayList<RondasPreguntas> bancoPreguntas = mPreguntas.preguntasRonda(usDTO);
-			System.out.println(bancoPreguntas.size());
 			
 			while(bancoPreguntas.size()>5) bancoPreguntas.remove(5);
-			System.out.println(bancoPreguntas.size());
+			
+			for(RondasPreguntas r: bancoPreguntas) {
+				System.out.println("");
+				System.out.println(r.getPreguntas().getId_pregunta());
+			}
 			
 			//Definir atributos para reenviar y e iniciar el juego
 			request.setAttribute("Preguntas", bancoPreguntas);

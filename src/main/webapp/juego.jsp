@@ -35,11 +35,12 @@ PendientesDTO pen=new PendientesDTO();
 pen.setId_user(id);
 PendientesDAO pend=new PendientesDAO();
 pen=pend.consultar(pen);
+if(pen.getCategoriaPregunta()>5 || pen.getCategoriaPregunta()==0) response.sendRedirect("./resultado.jsp");
 pen.setCategoriaPregunta(pen.getCategoriaPregunta()+1);
 pend.actualizar(pen);
 
 
-if(pen.getCategoriaPregunta()==0 || pen.getCategoriaPregunta()>5) response.sendRedirect("./resultado.jsp");
+
 
 RondasPreguntas juego=new RondasPreguntas();
 ArrayList<RondasPreguntas> rpj = (ArrayList<RondasPreguntas>) request.getAttribute("Preguntas");
@@ -49,6 +50,10 @@ String r1=juego.getRespuesta1().getRespuesta();
 String r2=juego.getRespuesta2().getRespuesta();
 String r3=juego.getRespuesta3().getRespuesta();
 String r4=juego.getRespuesta4().getRespuesta();
+
+	
+
+
 %>
 
 

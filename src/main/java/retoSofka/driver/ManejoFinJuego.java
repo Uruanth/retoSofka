@@ -56,9 +56,11 @@ public class ManejoFinJuego extends HttpServlet {
 				usDTO.setId(id);
 				ManejoPreguntas mPreguntas=new ManejoPreguntas();
 				ArrayList<RondasPreguntas> bancoPreguntas = mPreguntas.preguntasRonda(usDTO);
-				System.out.println(bancoPreguntas.size());
 				while(bancoPreguntas.size()>5) bancoPreguntas.remove(5);
-				System.out.println(bancoPreguntas.size());
+				for(RondasPreguntas r: bancoPreguntas) {
+					System.out.println("");
+					System.out.println(r.getPreguntas().getId_pregunta());
+				}
 				
 				request.setAttribute("Preguntas", bancoPreguntas);
 				
