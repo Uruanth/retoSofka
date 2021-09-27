@@ -66,6 +66,8 @@ body{
 
 .respuestas > p{
     /* background-color: #f9f; */
+    display: grid;
+    grid-template-columns: 0.001fr 2fr;
     border: 1px solid rgb(97, 165, 228);
     margin: 7px;
     padding: 5px;
@@ -78,14 +80,22 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+.respuestas > p > input{
+    opacity: 0;
+    justify-self: start;
+    align-self: center;
+
+}
+
 .respuestas > p:hover{
-    background-color: rgba(97, 165, 228, 0.685);;
+    background-color: rgba(97, 165, 228, 0.685);
     
 }
 
-.respuestas > p:focus{
-    background-color: rgba(97, 165, 228, 0.685);;
-    
+
+
+.pselec{
+    background-color: rgba(97, 165, 228, 0.685);
 }
 /*----------------------------------------------------------------------------
 *-------------------------------ESTILO BOTON-------------------------------

@@ -1,5 +1,11 @@
 package retoSofka.driver;
 
+/**Clase que aprovehca otros objetos para generar una lista
+ * con las preguntas y respuestas en la Base de datos
+ * @author Dairon Perilla
+ */
+
+
 import java.util.ArrayList;
 
 import retoSofka.model.PendientesDAO;
@@ -12,6 +18,11 @@ import retoSofka.model.UsuarioDTO;
 
 public class GeneradorPreguntasRespuestas {
 
+	/**
+	 * Devuelve un ArrayList con las preguntas de la base de datos
+	 * @param us recibe un usuario, con un valor minimo obligatorio de id
+	 * @return ArrayList<RondasPreguntas\>
+	 */
 	public ArrayList<RondasPreguntas> listaCompleta(UsuarioDTO us) {
 		
 		ArrayList<RondasPreguntas> lista=new ArrayList<>();
@@ -53,6 +64,11 @@ public class GeneradorPreguntasRespuestas {
 		return lista;
 	}
 	
+	/**
+	 * Verifica si el usuario tiene alguna sesión pendiente
+	 * @param us
+	 * @return
+	 */
 	private PendientesDTO verificarPendientes(int us) {
 		PendientesDAO penDAO = new PendientesDAO(); 
 		PendientesDTO penDTO = new PendientesDTO();

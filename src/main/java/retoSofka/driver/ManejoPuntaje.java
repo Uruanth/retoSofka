@@ -6,91 +6,78 @@ import retoSofka.model.HistorialDAO;
 import retoSofka.model.HistorialDTO;
 import retoSofka.model.PendientesDAO;
 import retoSofka.model.PendientesDTO;
+import retoSofka.model.UsuarioDAO;
 
+/**
+ * Clase para obtener el historial de puntajes del usuario
+ * 
+ * @author Dairon Perilla
+ *
+ */
 public class ManejoPuntaje {
-	private int id;
-	private int puntaje, acumulado, nuIntento;
-	ArrayList<HistorialDTO> lista;
-	HistorialDAO ha=new HistorialDAO();
-	HistorialDTO ht=new HistorialDTO();
-	
-	/*En esta clase se define el leer, asignar el puntaje de la ronda y reestablecer
-	 *los datos para una nueva ronda
+	/**
+	 * Metodo para obtener el Id del usuario activo
+	 * 
+	 * @return Id del usuario activo
 	 */
-	
-	
-	//Leer la categoria en la base de datos al entrar en la pagina
-	private void leerResultado() {
-		
-		System.out.println("leer");
-		PendientesDAO pa=new PendientesDAO();
-		PendientesDTO pt=new PendientesDTO();
-		pt.setId_user(id);
-		pt=pa.consultar(pt);
-		System.out.println(pt);
-		puntaje=pt.getCategoriaPregunta();
-		System.out.println(puntaje);
-		switch(puntaje) {
-			case 2:
-				puntaje=0;
-				break;
-			case 3:
-				puntaje=1;
-				acumulado=1;
-				break;
-			case 4:
-				puntaje=2;
-				acumulado=2;
-				break;
-			case 5:
-				puntaje=3;
-				acumulado=3;
-				break;
-			case 6:
-				puntaje=4;
-				acumulado=4;
-				break;
-			case 7:
-				puntaje=5;
-				acumulado=5;
-				break;
-			default:
-				puntaje=10;
-				break;
+	private int consultarID() {
+		UsuarioDAO ua = new UsuarioDAO();
+		int id;
+		try {
+			id = ua.leerByEstado(1);
+		} catch (Exception e) {
+			id = 0;
+			System.out.println("error consultar id");
 		}
-		
+
+		return id;
 	}
 
-	//Agregar el resultado de la ultima partida
-	private ArrayList<HistorialDTO> agregarResultado() {
-		
-		leerResultado();
-		if(puntaje>5) return null;
-		ht.setNumeroIntento(nuIntento+1);
-		ht.setPuntaje(puntaje);
-		ht.setAcumulado(acumulado);
-		lista.add(ht);
-		ha.create(ht);
-		return lista;
-	}
-
-	//ArrayList de los resultados totales
-	public ArrayList<HistorialDTO> historialPuntaje() {
-		
-		ht.setId_user(id);
-		
-		lista=ha.registros(ht);
-		System.out.println("ll "+lista);
-		nuIntento=lista.size();
-		if(agregarResultado()!=null) {
+	/**
+	 * Metodo para determinar la categoria de la ultima ronda jugada
+	 * 
+	 * @return categoria actual
+	 */
+	private int consultarCate() {
+		int id = consultarID();
+		if (id == 0) {
+			return 0;
+		} else {
+			PendientesDTO pt = new PendientesDTO();
+			pt.setId_user(id);
+			PendientesDAO pa = new PendientesDAO();
+			pt = pa.consultar(pt);
+			int cat = pt.getCategoriaPregunta();
+			pa.pendientes(pt);
+			return cat;
 		}
-		
-		return lista;
+
 	}
 
-	
-	
-	public void setId(int id) {
-		this.id=id;
+	/**
+	 * Metodo para obtener un ArrayList con el historial del usuario
+	 * 
+	 * @return ArrayList HistorialDTO
+	 */
+	public ArrayList<HistorialDTO> lista() {
+		ArrayList<HistorialDTO> lista = new ArrayList<HistorialDTO>();
+
+		HistorialDAO ha = new HistorialDAO();
+		HistorialDTO ht = new HistorialDTO();
+		ht.setId_user(consultarID());
+		if (ht.getId_user() != 0) {
+
+			lista = ha.registros(ht);
+			ht.setNumeroIntento(lista.size() + 1);
+			ht.setPuntaje(consultarCate());
+			lista.add(ht);
+			ha.create(ht);
+			UsuarioDAO usDAO = new UsuarioDAO();
+			usDAO.cambiarEstado(consultarID(), 0);
+			return lista;
+		}
+
+		return null;
 	}
+
 }

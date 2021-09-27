@@ -15,7 +15,11 @@ import retoSofka.model.PendientesDAO;
 import retoSofka.model.PendientesDTO;
 import retoSofka.model.UsuarioDAO;
 import retoSofka.model.UsuarioDTO;
-
+/**
+ * Servlet que inicializa y comprueba los datos de ingreso del usuario
+ * @author Dairon Perilla
+ *
+ */
 @WebServlet("/ManejoPeticiones")
 public class ManejoUsuarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,9 +39,9 @@ public class ManejoUsuarios extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		System.out.println("ingreso usuario");
 		UsuarioDTO usDTO = new UsuarioDTO();
 		UsuarioDAO usDAO = new UsuarioDAO();
+		
 		
 		try {
 			usDTO.setId(Integer.parseInt(request.getParameter("id")));
@@ -52,28 +56,14 @@ public class ManejoUsuarios extends HttpServlet {
 				usDTO.setUsername(request.getParameter("username"));
 				usDAO.cear(usDTO);
 				
-				
-				/*if(request.getParameter("email")==null
-						|| request.getParameter("nombre")==null
-						|| request.getParameter("username")==null) {
-					System.out.println("ingrese todos los datos");
-				}else {
-					usDTO.setEmail(request.getParameter("email"));
-					usDTO.setNombre(request.getParameter("nombre"));
-					usDTO.setUsername(request.getParameter("username"));	
-				}*/
-				
 			}
+			usDAO.cambiarEstado(usDTO.getId(), 1);
+			
 			//Asignar banco de preguntas
 			ManejoPreguntas mPreguntas=new ManejoPreguntas();
 			ArrayList<RondasPreguntas> bancoPreguntas = mPreguntas.preguntasRonda(usDTO);
 			
 			while(bancoPreguntas.size()>5) bancoPreguntas.remove(5);
-			
-			for(RondasPreguntas r: bancoPreguntas) {
-				System.out.println("");
-				System.out.println(r.getPreguntas().getId_pregunta());
-			}
 			
 			//Definir atributos para reenviar y e iniciar el juego
 			request.setAttribute("Preguntas", bancoPreguntas);
@@ -90,7 +80,8 @@ public class ManejoUsuarios extends HttpServlet {
 			e.printStackTrace();
 		
 		}
-		System.out.println("fin dopost");
+		
+		
 		
 		
 		

@@ -6,17 +6,25 @@ import java.sql.ResultSet;
 
 import retoSofka.driver.IngresoBaseData;
 
+/**
+ * Objeto PendientesDTO, manejo de sesiones pendientes
+ * 
+ * @author Dairon Perilla
+ *
+ */
 public class PendientesDAO {
 
-	
-//Clase para manejar los juegos pausados y retomados despues
-	
+	/**
+	 * Crea el registro en la base de datos
+	 * 
+	 * @param pdto id Usuario y categoria actual-
+	 */
 	public void crear(PendientesDTO pdto) {
-		
-		String query="INSERT INTO pendientes (id_user, id_categoria) VALUES (?,?)";
-		Connection con=null;
-		PreparedStatement ps=null;
-		
+
+		String query = "INSERT INTO pendientes (id_user, id_categoria) VALUES (?,?)";
+		Connection con = null;
+		PreparedStatement ps = null;
+
 		try {
 			con = IngresoBaseData.getConexion();
 			ps = con.prepareStatement(query);
@@ -25,7 +33,7 @@ public class PendientesDAO {
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 		} finally {
 			try {
 				IngresoBaseData.close(ps);
@@ -35,20 +43,25 @@ public class PendientesDAO {
 			}
 		}
 	}
-	
-//Consultar pendientes	
+
+	/**
+	 * Consulta si el usuario tiene sesiones pendientes
+	 * 
+	 * @param pdto
+	 * @return PendientesDTO
+	 */
 	public PendientesDTO consultar(PendientesDTO pdto) {
-		
+
 		String query = "SELECT * FROM pendientes WHERE id_user=?";
 		Connection con = null;
 		PreparedStatement ps = null;
-		ResultSet rs =  null;
-		
+		ResultSet rs = null;
 		try {
 			con = IngresoBaseData.getConexion();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, pdto.getId_user());
-			rs=ps.executeQuery();
+			rs = ps.executeQuery();
+
 			try {
 				rs.next();
 				pdto.setCategoriaPregunta(rs.getInt("id_categoria"));
@@ -66,40 +79,44 @@ public class PendientesDAO {
 				e2.printStackTrace();
 			}
 		}
-		
-		
-		
+
 		return pdto;
 	}
-	
-	
-//Borrar pendientes
+
+	/**
+	 * Borra datos de sesiones pendientes
+	 * 
+	 * @param pdto PendientesDTO
+	 */
 	public void pendientes(PendientesDTO pdto) {
-		
-		String query ="DELETE FROM pendientes WHERE id_user=?";
-		Connection con=null;
-		PreparedStatement ps=null;
-		
+
+		String query = "DELETE FROM pendientes WHERE id_user=?";
+		Connection con = null;
+		PreparedStatement ps = null;
+
 		try {
-			con=IngresoBaseData.getConexion();
-			ps=con.prepareStatement(query);
+			con = IngresoBaseData.getConexion();
+			ps = con.prepareStatement(query);
 			ps.setInt(1, pdto.getId_user());
+			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		
+
 	}
 
-	
-//actualizar	
+	/**
+	 * Actualiza los datos de la sesion
+	 * 
+	 * @param p PendientesDTO
+	 */
 	public void actualizar(PendientesDTO p) {
-		String query="UPDATE pendientes SET id_categoria=? WHERE id_user=?";
-		Connection con=null;
-		PreparedStatement ps=null;
+		String query = "UPDATE pendientes SET id_categoria=? WHERE id_user=?";
+		Connection con = null;
+		PreparedStatement ps = null;
 		try {
-			con=IngresoBaseData.getConexion();
-			ps=con.prepareStatement(query);
+			con = IngresoBaseData.getConexion();
+			ps = con.prepareStatement(query);
 			ps.setInt(1, p.getCategoriaPregunta());
 			ps.setInt(2, p.getId_user());
 			ps.executeUpdate();

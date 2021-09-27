@@ -1,3 +1,4 @@
+<%@page import="retoSofka.model.UsuarioDAO"%>
 <%@page import="retoSofka.driver.ManejoPuntaje"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -9,6 +10,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="retoSofka.driver.ManejoPuntaje" %>
 <%@ page import="retoSofka.model.HistorialDTO" %>
+<%@ page import="retoSofka.model.UsuarioDAO" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -24,17 +26,14 @@
 </head>
 <body>
 <%
-
-int id = (int) request.getAttribute("idus");
-System.out.println(id);
-ManejoPuntaje mp=new ManejoPuntaje();
-mp.setId(id);
-ArrayList<HistorialDTO> lista=mp.historialPuntaje();
+	ManejoPuntaje mp=new ManejoPuntaje();
+	ArrayList<HistorialDTO> lista=mp.lista();
 
 %>
+
 <div class="div_tabla">
         <div class="titulo_tabla">
-            <h1>Titulo tabla</h1>
+            <h1></h1>
         </div>
 
         <div class="columna_tabla encabezados">
@@ -47,32 +46,34 @@ ArrayList<HistorialDTO> lista=mp.historialPuntaje();
             <p>PREMIO</p>
         </div>
         
-     <%for(int i=lista.size()-1; i>lista.size()-10; i--){
+     <%
+     int taLista=lista.size();
+     int cont=0;
+     while(taLista > 0 && cont<10){
+    	 
 	%>        
 
         <div class="columna_tabla">
-           <%=lista.get(i).getNumeroIntento() %>
+           <%=lista.get(taLista-1).getNumeroIntento() %>
         </div>
         <div class="columna_tabla">
-           <%=lista.get(i).getPuntaje() %>
+           <%=lista.get(taLista-1).getPuntaje()-2%>
         </div>
         <div class="columna_tabla">
-            <%=lista.get(i).getPuntaje() %>
+            <%=lista.get(taLista-1).getPuntaje() %>
         </div>
-<%} %>     
-        
+    
+  <%
+  taLista--;
+  cont++;
+     }
+  %>      
         
         <div class="boton">
-            <input type="submit" value="INICIO">
+            <input type="submit" value="enviar" onclick = "location='./index.jsp'"/>
         </div>
         
     </div>
     
-       
-
-
-    <form action="TestServlet" method="get">
-    <input type="submit">
-    </form>
 </body>
 </html>

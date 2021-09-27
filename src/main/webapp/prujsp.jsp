@@ -8,6 +8,7 @@
 <%@ page import="javax.servlet.http.HttpServlet" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="retoSofka.driver.ManejoPuntaje" %>
+<%@ page import="retoSofka.driver.PreguntasRespuestasPruebas" %>
 <%@ page import="retoSofka.model.HistorialDTO" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -23,57 +24,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-int id=156;
-ManejoPuntaje mp=new ManejoPuntaje();
-mp.setId(id);
-ArrayList<HistorialDTO> lista=mp.historialPuntaje();
-System.out.println("lista en jsp "+lista.size());
+ <%
+ PreguntasRespuestasPruebas inBD=new PreguntasRespuestasPruebas();
+ inBD.iniciarBD();
+ %>
 
-
-%>
-<div class="div_tabla">
-        <div class="titulo_tabla">
-            <h1>Titulo tabla</h1>
-        </div>
-
-        <div class="columna_tabla encabezados">
-            <p>INTENTO NUMERO</p>
-        </div>
-        <div class="columna_tabla encabezados">
-          <p>PUNTAJE</p>
-        </div>
-        <div class="columna_tabla encabezados">
-            <p>PREMIO</p>
-        </div>
-        
-     <%for(int i=lista.size()-1; i>lista.size()-10; i--){
-	%>        
-
-        <div class="columna_tabla">
-           <%=lista.get(i).getNumeroIntento() %>
-        </div>
-        <div class="columna_tabla">
-           <%=lista.get(i).getPuntaje() %>
-        </div>
-        <div class="columna_tabla">
-            <%=lista.get(i).getPuntaje() %>
-        </div>
-<%} %>     
-        
-        
-        <div class="boton">
-            <input type="submit" value="INICIO">
-        </div>
-        
-    </div>
+<h1>YA SE CARGO LA BASE DE DATOS</h1>
     
-       
-
-
-    <form action="TestServlet" method="get">
-    <input type="submit">
-    </form>
 </body>
 </html>
 <%

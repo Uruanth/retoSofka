@@ -15,52 +15,49 @@ import retoSofka.model.UsuarioDAO;
 import retoSofka.model.UsuarioDTO;
 
 /**
+ * Servlet usado para pruebas o iniciar los metodos de generar las preguntas
+ * de prueba 
+ * @author Dairon Perilla
+ */
+/**
  * Servlet implementation class TestServlet
  */
 @WebServlet("/TestServlet")
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TestServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		
-		
-		
-		
-		
-		
+	public TestServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
-		/*
-		 Se genero la base de datos de prueba 
-		 System.out.println("inicio");
-		 PreguntasRespuestasPruebas prn = new PreguntasRespuestasPruebas();
-		 prn.iniciarBD();		
-		 System.out.println("ok");
-		
-		  */
-		 
-		
+
+		// Se genero la base de datos de prueba
+		PreguntasRespuestasPruebas prn = new PreguntasRespuestasPruebas();
+		prn.iniciarBD();
+
 		System.out.println("servlet pru");
 	}
 
